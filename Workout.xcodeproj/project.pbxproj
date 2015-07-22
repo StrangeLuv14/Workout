@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07020B3D1B600524005F16D0 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07020B3C1B600524005F16D0 /* MainPageViewController.swift */; };
+		07020B3F1B6005C9005F16D0 /* Recruitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07020B3E1B6005C9005F16D0 /* Recruitment.swift */; };
+		07020B431B600A2D005F16D0 /* RecruitmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07020B421B600A2D005F16D0 /* RecruitmentCell.swift */; };
 		071BC2C01B6002DE0075047F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC2BF1B6002DE0075047F /* AppDelegate.swift */; };
 		071BC2C21B6002DE0075047F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC2C11B6002DE0075047F /* FirstViewController.swift */; };
 		071BC2C41B6002DE0075047F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC2C31B6002DE0075047F /* SecondViewController.swift */; };
@@ -14,6 +17,8 @@
 		071BC2C91B6002DE0075047F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 071BC2C81B6002DE0075047F /* Images.xcassets */; };
 		071BC2CC1B6002DE0075047F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071BC2CA1B6002DE0075047F /* LaunchScreen.xib */; };
 		071BC2D81B6002DF0075047F /* WorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC2D71B6002DF0075047F /* WorkoutTests.swift */; };
+		071BC2E21B6003B80075047F /* RecruitmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071BC2E11B6003B80075047F /* RecruitmentCell.xib */; };
+		077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07020B3C1B600524005F16D0 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		07020B3E1B6005C9005F16D0 /* Recruitment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recruitment.swift; sourceTree = "<group>"; };
+		07020B421B600A2D005F16D0 /* RecruitmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitmentCell.swift; sourceTree = "<group>"; };
 		071BC2BA1B6002DE0075047F /* Workout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		071BC2BE1B6002DE0075047F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		071BC2BF1B6002DE0075047F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +46,8 @@
 		071BC2D11B6002DF0075047F /* WorkoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		071BC2D61B6002DF0075047F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		071BC2D71B6002DF0075047F /* WorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTests.swift; sourceTree = "<group>"; };
+		071BC2E11B6003B80075047F /* RecruitmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecruitmentCell.xib; sourceTree = "<group>"; };
+		077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitmentDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +90,14 @@
 			isa = PBXGroup;
 			children = (
 				071BC2BF1B6002DE0075047F /* AppDelegate.swift */,
+				07020B421B600A2D005F16D0 /* RecruitmentCell.swift */,
 				071BC2C11B6002DE0075047F /* FirstViewController.swift */,
 				071BC2C31B6002DE0075047F /* SecondViewController.swift */,
 				071BC2C51B6002DE0075047F /* Main.storyboard */,
+				071BC2E11B6003B80075047F /* RecruitmentCell.xib */,
+				07020B3C1B600524005F16D0 /* MainPageViewController.swift */,
+				077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */,
+				07020B3E1B6005C9005F16D0 /* Recruitment.swift */,
 				071BC2C81B6002DE0075047F /* Images.xcassets */,
 				071BC2CA1B6002DE0075047F /* LaunchScreen.xib */,
 				071BC2BD1B6002DE0075047F /* Supporting Files */,
@@ -197,6 +212,7 @@
 			files = (
 				071BC2C71B6002DE0075047F /* Main.storyboard in Resources */,
 				071BC2CC1B6002DE0075047F /* LaunchScreen.xib in Resources */,
+				071BC2E21B6003B80075047F /* RecruitmentCell.xib in Resources */,
 				071BC2C91B6002DE0075047F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,8 +231,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07020B3D1B600524005F16D0 /* MainPageViewController.swift in Sources */,
 				071BC2C41B6002DE0075047F /* SecondViewController.swift in Sources */,
+				07020B3F1B6005C9005F16D0 /* Recruitment.swift in Sources */,
 				071BC2C01B6002DE0075047F /* AppDelegate.swift in Sources */,
+				07020B431B600A2D005F16D0 /* RecruitmentCell.swift in Sources */,
+				077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */,
 				071BC2C21B6002DE0075047F /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +433,7 @@
 				071BC2DD1B6002DF0075047F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		071BC2DE1B6002DF0075047F /* Build configuration list for PBXNativeTarget "WorkoutTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +442,7 @@
 				071BC2E01B6002DF0075047F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
