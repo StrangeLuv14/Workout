@@ -30,15 +30,24 @@ class RecruitViewController: UITableViewController {
     @IBOutlet weak var endDateTextField: UITextField!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var sportsCategoryLabel: UILabel!
+    @IBOutlet weak var numberOfPeopleTextField: UITextField!
     
+    @IBOutlet weak var descriptionTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        updateLabels()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +56,11 @@ class RecruitViewController: UITableViewController {
     }
     
     // MARK: - RecruitViewController methods
+    
+    func updateLabels() {
+        println("updateLabels")
+        sportsCategoryLabel.text = recruitment.sportsCategory
+    }
     
     func showDatePicker() {
         
@@ -65,6 +79,7 @@ class RecruitViewController: UITableViewController {
     }
     
     func updateDatePicker() {
+        println("updateDatePicker")
         let indexPathDatePicker = NSIndexPath(forRow: 4, inSection: 0)
         if let pickerCell = tableView.cellForRowAtIndexPath(indexPathDatePicker) {
             let datePicker = pickerCell.viewWithTag(100) as! UIDatePicker
@@ -187,6 +202,8 @@ class RecruitViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        numberOfPeopleTextField.resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
     
         let currentDatePickerState = dateToEdit
         switch (indexPath.section, indexPath.row) {
@@ -215,7 +232,7 @@ class RecruitViewController: UITableViewController {
             }
             
             endDateLabel.textColor = UIColor.lightGrayColor()
-            startDateLabel.textColor = startDateLabel.tintColor
+            startDateLabel.textColor = UIColor(red: 22/255, green: 30/255, blue: 62/255, alpha: 0.7)
         case (0, 3):
             println("Editting EndDate")
             dateToEdit = .EndDate
@@ -242,7 +259,7 @@ class RecruitViewController: UITableViewController {
             }
             
             startDateLabel.textColor = UIColor.lightGrayColor()
-            endDateLabel.textColor = startDateLabel.tintColor
+            endDateLabel.textColor = UIColor(red: 22/255, green: 30/255, blue: 62/255, alpha: 0.7)
         default:break
         }
 
@@ -284,15 +301,37 @@ class RecruitViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        hideDatePicker()
+        if segue.identifier == "PickSportsCategory" {
+            println("prepareForSegue")
+            let controller = segue.destinationViewController as! SportsCategoryPickViewController
+            controller.sportsCategory = recruitment.sportsCategory
+            controller.delegate = self
+        }
     }
-    */
     
     
+}
+
+// MARK: - SportsCategoryPickViewControllerDElegate
+
+extension RecruitViewController: SportsCategoryPickViewControllerDelegate {
+    func sportsCategoryPickView(sportsCategoryPicker: SportsCategoryPickViewController, didPickedSportsCategory category: String) {
+        println("sportsCategoryPickView:didPickedSportsCategory:")
+        recruitment.sportsCategory = category
+        navigationController?.popViewControllerAnimated(true)
+        
+    }
+}
+
+extension RecruitViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(textView: UITextView) {
+        hideDatePicker()
+    }
 }

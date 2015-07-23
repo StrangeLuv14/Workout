@@ -20,6 +20,7 @@
 		071BC2E21B6003B80075047F /* RecruitmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071BC2E11B6003B80075047F /* RecruitmentCell.xib */; };
 		077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */; };
 		078799541B604C3E005E412B /* RecruitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078799531B604C3E005E412B /* RecruitViewController.swift */; };
+		078799561B61264F005E412B /* SportsCategoryPickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078799551B61264F005E412B /* SportsCategoryPickViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		071BC2E11B6003B80075047F /* RecruitmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecruitmentCell.xib; sourceTree = "<group>"; };
 		077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitmentDetailViewController.swift; sourceTree = "<group>"; };
 		078799531B604C3E005E412B /* RecruitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitViewController.swift; sourceTree = "<group>"; };
+		078799551B61264F005E412B /* SportsCategoryPickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportsCategoryPickViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				071BC2C11B6002DE0075047F /* FirstViewController.swift */,
 				071BC2C31B6002DE0075047F /* SecondViewController.swift */,
 				071BC2C51B6002DE0075047F /* Main.storyboard */,
+				078799551B61264F005E412B /* SportsCategoryPickViewController.swift */,
 				078799531B604C3E005E412B /* RecruitViewController.swift */,
 				071BC2E11B6003B80075047F /* RecruitmentCell.xib */,
 				07020B3C1B600524005F16D0 /* MainPageViewController.swift */,
@@ -238,6 +241,7 @@
 				071BC2C41B6002DE0075047F /* SecondViewController.swift in Sources */,
 				07020B3F1B6005C9005F16D0 /* Recruitment.swift in Sources */,
 				078799541B604C3E005E412B /* RecruitViewController.swift in Sources */,
+				078799561B61264F005E412B /* SportsCategoryPickViewController.swift in Sources */,
 				071BC2C01B6002DE0075047F /* AppDelegate.swift in Sources */,
 				07020B431B600A2D005F16D0 /* RecruitmentCell.swift in Sources */,
 				077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */,
