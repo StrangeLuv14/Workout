@@ -73,14 +73,13 @@ class RecruitViewController: UITableViewController {
             let endDate = recruitment.endDate
             switch dateToEdit {
             case .StartDate:
-                datePicker.setDate(startDate, animated: false)
+                datePicker.setDate(startDate, animated: true)
             case .EndDate:
-                datePicker.setDate(endDate, animated: false)
+                datePicker.setDate(endDate, animated: true)
             default:
                 println("Never goes here!")
             }
         }
-        
     }
 
     func hideDatePicker() {
@@ -142,7 +141,6 @@ class RecruitViewController: UITableViewController {
         // Return the number of rows in the section.
         
         if  section == 0 && datePickerVisible {
-            println("tableView(_:, numberOfRowsInSection:) return 5")
             return 5
         } else {
             return super.tableView(tableView, numberOfRowsInSection: section)
@@ -189,36 +187,60 @@ class RecruitViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+    
+        let currentDatePickerState = dateToEdit
         switch (indexPath.section, indexPath.row) {
         case (0, 2):
             println("Editting StartDate")
-            
-            switch dateToEdit {
+            dateToEdit = .StartDate
+            switch currentDatePickerState {
             case .NoDate:
                 showDatePicker()
+                
             case .StartDate:
-                hideDatePicker()
+                if datePickerVisible {
+                    hideDatePicker()
+                } else {
+                    showDatePicker()
+                }
+                
             case .EndDate:
-                updateDatePicker()
+                if datePickerVisible {
+                    updateDatePicker()
+                } else {
+                    showDatePicker()
+                }
+                
             default:break
             }
-            dateToEdit = .StartDate
+            
             endDateLabel.textColor = UIColor.lightGrayColor()
             startDateLabel.textColor = startDateLabel.tintColor
         case (0, 3):
             println("Editting EndDate")
-            
-            switch dateToEdit {
+            dateToEdit = .EndDate
+            switch currentDatePickerState {
+                
             case .NoDate:
                 showDatePicker()
+                
             case .StartDate:
-                updateDatePicker()
+                if datePickerVisible {
+                    updateDatePicker()
+                } else {
+                    showDatePicker()
+                }
+                
             case .EndDate:
-                hideDatePicker()
+                if datePickerVisible {
+                    hideDatePicker()
+                } else {
+                    showDatePicker()
+                }
+                
             default:break
             }
-            dateToEdit = .EndDate
+            
             startDateLabel.textColor = UIColor.lightGrayColor()
             endDateLabel.textColor = startDateLabel.tintColor
         default:break
