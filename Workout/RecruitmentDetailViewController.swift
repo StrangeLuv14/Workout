@@ -13,6 +13,7 @@ class RecruitmentDetailViewController: UIViewController {
     var recruitment: Recruitment?
 
     @IBOutlet weak var sponsorNameLabel: UILabel!
+    @IBOutlet weak var genderImageView: UIImageView!
     @IBOutlet weak var sportsImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -43,6 +44,9 @@ class RecruitmentDetailViewController: UIViewController {
     private func configureUI() {
         if let recruitment = recruitment {
             sponsorNameLabel.text = recruitment.sponsor
+            let gender = recruitment.stringForGender()
+            println(gender)
+            genderImageView.image = UIImage(named: gender)
             sportsImageView.image = UIImage(named: recruitment.sportsCategory)
             
             let formatter = NSDateIntervalFormatter()

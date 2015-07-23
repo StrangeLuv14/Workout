@@ -16,6 +16,9 @@ class MainPageViewController: UITableViewController {
         for index in 1...20 {
             let recruitment = Recruitment()
             recruitment.sponsor = "Bob \(index)"
+            recruitment.gender = (index % 2) == 0 ? Recruitment.Gender.Male : Recruitment.Gender.Female
+            
+            
             recruitment.sportsCategory = "Bowling"
             
             let timeInterval = NSTimeInterval(index * 10000)

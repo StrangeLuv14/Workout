@@ -9,7 +9,14 @@
 import Foundation
 
 class Recruitment {
+    enum Gender : Int{
+        case Male = 0
+        case Female = 1
+    }
+    
     var sponsor = ""
+    var gender = Recruitment.Gender.Male
+    
     var sportsCategory = ""
     var postDate = NSDate()
     var startDate = NSDate()
@@ -17,6 +24,12 @@ class Recruitment {
     var location = ""
     var description = ""
     
+    func stringForGender() -> String {
+        switch gender {
+        case .Male: return "Male"
+        case .Female: return "Female"
+        }
+    }
     
     /*
     enum sportsCategory: String {
