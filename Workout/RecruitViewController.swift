@@ -33,6 +33,7 @@ class RecruitViewController: UITableViewController {
     @IBOutlet weak var sportsCategoryLabel: UILabel!
     @IBOutlet weak var numberOfPeopleTextField: UITextField!
     
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,7 @@ class RecruitViewController: UITableViewController {
     func updateLabels() {
         println("updateLabels")
         sportsCategoryLabel.text = recruitment.sportsCategory
+        locationLabel.text = recruitment.location
     }
     
     func showDatePicker() {
@@ -314,12 +316,26 @@ class RecruitViewController: UITableViewController {
             controller.sportsCategory = recruitment.sportsCategory
             controller.delegate = self
         }
+        
+        if segue.identifier == "PickLocation" {
+            let controller = segue.destinationViewController as! LocationPickViewController
+            controller.delegate = self
+        }
     }
     
     
 }
 
-// MARK: - SportsCategoryPickViewControllerDElegate
+// MARK: - LocationPickViewControllerDelegate
+
+extension RecruitViewController: LocationPickViewControllerDelegate {
+    func LocationPickerView(LocationPickView picker: LocationPickViewController, didPickedLocation location: String) {
+        recruitment.location = location
+        updateLabels()
+    }
+}
+
+// MARK: - SportsCategoryPickViewControllerDelegate
 
 extension RecruitViewController: SportsCategoryPickViewControllerDelegate {
     func sportsCategoryPickView(sportsCategoryPicker: SportsCategoryPickViewController, didPickedSportsCategory category: String) {
@@ -329,6 +345,8 @@ extension RecruitViewController: SportsCategoryPickViewControllerDelegate {
         
     }
 }
+
+// MARK: - UITextViewDelegate
 
 extension RecruitViewController: UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {

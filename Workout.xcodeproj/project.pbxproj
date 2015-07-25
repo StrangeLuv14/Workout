@@ -21,6 +21,9 @@
 		077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */; };
 		078799541B604C3E005E412B /* RecruitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078799531B604C3E005E412B /* RecruitViewController.swift */; };
 		078799561B61264F005E412B /* SportsCategoryPickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078799551B61264F005E412B /* SportsCategoryPickViewController.swift */; };
+		07AE30711B623AC4006D3B9F /* LocationPickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */; };
+		07AF4BD21B626F680030F1FC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AF4BD11B626F680030F1FC /* MapKit.framework */; };
+		07AF4BDA1B629D050030F1FC /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF4BD91B629D050030F1FC /* String+AddText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitmentDetailViewController.swift; sourceTree = "<group>"; };
 		078799531B604C3E005E412B /* RecruitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitViewController.swift; sourceTree = "<group>"; };
 		078799551B61264F005E412B /* SportsCategoryPickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportsCategoryPickViewController.swift; sourceTree = "<group>"; };
+		07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickViewController.swift; sourceTree = "<group>"; };
+		07AF4BD11B626F680030F1FC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		07AF4BD91B629D050030F1FC /* String+AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07AF4BD21B626F680030F1FC /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +82,7 @@
 		071BC2B11B6002DE0075047F = {
 			isa = PBXGroup;
 			children = (
+				07AF4BD11B626F680030F1FC /* MapKit.framework */,
 				071BC2BC1B6002DE0075047F /* Workout */,
 				071BC2D41B6002DF0075047F /* WorkoutTests */,
 				071BC2BB1B6002DE0075047F /* Products */,
@@ -98,6 +106,8 @@
 				071BC2C11B6002DE0075047F /* FirstViewController.swift */,
 				071BC2C31B6002DE0075047F /* SecondViewController.swift */,
 				071BC2C51B6002DE0075047F /* Main.storyboard */,
+				07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */,
+				07AF4BD91B629D050030F1FC /* String+AddText.swift */,
 				078799551B61264F005E412B /* SportsCategoryPickViewController.swift */,
 				078799531B604C3E005E412B /* RecruitViewController.swift */,
 				071BC2E11B6003B80075047F /* RecruitmentCell.xib */,
@@ -239,12 +249,14 @@
 			files = (
 				07020B3D1B600524005F16D0 /* MainPageViewController.swift in Sources */,
 				071BC2C41B6002DE0075047F /* SecondViewController.swift in Sources */,
+				07AF4BDA1B629D050030F1FC /* String+AddText.swift in Sources */,
 				07020B3F1B6005C9005F16D0 /* Recruitment.swift in Sources */,
 				078799541B604C3E005E412B /* RecruitViewController.swift in Sources */,
 				078799561B61264F005E412B /* SportsCategoryPickViewController.swift in Sources */,
 				071BC2C01B6002DE0075047F /* AppDelegate.swift in Sources */,
 				07020B431B600A2D005F16D0 /* RecruitmentCell.swift in Sources */,
 				077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */,
+				07AE30711B623AC4006D3B9F /* LocationPickViewController.swift in Sources */,
 				071BC2C21B6002DE0075047F /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
