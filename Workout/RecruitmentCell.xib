@@ -26,10 +26,14 @@
                             <constraint firstAttribute="width" constant="50" id="Oie-PQ-8DV"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-Lp-Jg7">
-                        <rect key="frame" x="280" y="51" width="32" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="post time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-Lp-Jg7">
+                        <rect key="frame" x="247" y="51" width="65" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="people left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMM-vb-K0R">
+                        <rect key="frame" x="239" y="18" width="72.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -37,8 +41,10 @@
                     <constraint firstAttribute="bottomMargin" secondItem="YQg-Fg-Oyn" secondAttribute="bottom" constant="11" id="C8C-EH-z2h"/>
                     <constraint firstItem="Og2-Lp-Jg7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YQg-Fg-Oyn" secondAttribute="trailing" constant="8" id="HWc-QW-CzM"/>
                     <constraint firstItem="YQg-Fg-Oyn" firstAttribute="top" secondItem="fOZ-TZ-63i" secondAttribute="topMargin" constant="11" id="RIw-AH-uRG"/>
+                    <constraint firstItem="LMM-vb-K0R" firstAttribute="top" secondItem="fOZ-TZ-63i" secondAttribute="topMargin" constant="10" id="WDV-Rl-tnc"/>
                     <constraint firstAttribute="trailing" secondItem="Og2-Lp-Jg7" secondAttribute="trailing" constant="8" id="a3j-nL-Fbv"/>
                     <constraint firstItem="YQg-Fg-Oyn" firstAttribute="leading" secondItem="fOZ-TZ-63i" secondAttribute="leading" constant="8" id="ckW-4f-L5j"/>
+                    <constraint firstItem="LMM-vb-K0R" firstAttribute="trailing" secondItem="fOZ-TZ-63i" secondAttribute="trailingMargin" id="jzU-Hm-uOH"/>
                     <constraint firstAttribute="bottom" secondItem="Og2-Lp-Jg7" secondAttribute="bottom" constant="18.5" id="vAi-RO-OGC"/>
                 </constraints>
                 <variation key="default">
@@ -48,6 +54,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="numberOfPeopleAvailableLabel" destination="LMM-vb-K0R" id="cYF-by-egE"/>
                 <outlet property="postDateLabel" destination="Og2-Lp-Jg7" id="WXI-6g-dA8"/>
                 <outlet property="sponsorLabel" destination="RSF-5E-q2h" id="Ntt-pH-7dk"/>
                 <outlet property="sportImageView" destination="YQg-Fg-Oyn" id="0B5-l0-bJn"/>

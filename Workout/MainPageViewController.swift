@@ -13,6 +13,20 @@ class MainPageViewController: UITableViewController {
     var recruitments = [Recruitment]()
 
     override func viewDidLoad() {
+        //fakeData()
+        
+        super.viewDidLoad()
+
+        let cellNib = UINib(nibName: "RecruitmentCell", bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: "RecruitmentCell")
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func fakeData() {
         for index in 1...20 {
             let recruitment = Recruitment()
             recruitment.sponsor = "Bob \(index)"
@@ -35,16 +49,6 @@ class MainPageViewController: UITableViewController {
             
             recruitments.append(recruitment)
         }
-        
-        super.viewDidLoad()
-
-        let cellNib = UINib(nibName: "RecruitmentCell", bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: "RecruitmentCell")
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,6 +127,20 @@ class MainPageViewController: UITableViewController {
             let controller = segue.destinationViewController as! RecruitmentDetailViewController
             controller.recruitment = recruitments[sender!.row]
         }
+        
+        if segue.identifier == "Recruit" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! RecruitViewController
+            controller.delegate = self
+        }
     }
     
+}
+
+extension MainPageViewController: RecruitViewControllerDelegate {
+    func recruitViewController(view: RecruitViewController, didFinishRecruit recruitment: Recruitment) {
+        println("didFinishRecruit")
+        recruitments.append(recruitment)
+        tableView.reloadData()
+    }
 }

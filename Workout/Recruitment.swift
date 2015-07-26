@@ -18,6 +18,10 @@ class Recruitment {
     var gender = Recruitment.Gender.Male
     
     var sportsCategory = ""
+    var numberOfPeopleNeeded = 0
+    var numberOfPeopleRecruited = 0
+    
+    
     var postDate = NSDate()
     var startDate = NSDate()
     var endDate = NSDate()

@@ -12,6 +12,10 @@ func == <T: Equatable> (tuple1:(T, T), tuple2:(T, T)) -> Bool {
     return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1)
 }
 
+protocol RecruitViewControllerDelegate: class {
+    func recruitViewController(view: RecruitViewController, didFinishRecruit recruitment: Recruitment)
+}
+
 class RecruitViewController: UITableViewController {
     
     enum EdittingDate {
@@ -25,6 +29,8 @@ class RecruitViewController: UITableViewController {
     var dateToEdit = EdittingDate.NoDate
     
     var datePickerVisible = false
+    
+    var delegate: RecruitViewControllerDelegate?
 
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
@@ -35,11 +41,23 @@ class RecruitViewController: UITableViewController {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    
+    @IBAction func done(sender: AnyObject) {
+        recruitment.postDate = NSDate()
+        recruitment.numberOfPeopleNeeded = numberOfPeopleTextField.text.toInt()!
+        recruitment.description = descriptionTextView.text
+        
+        delegate?.recruitViewController(self, didFinishRecruit: recruitment)
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func cancel(sender: AnyObject) {
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -352,4 +370,5 @@ extension RecruitViewController: UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
         hideDatePicker()
     }
+    
 }

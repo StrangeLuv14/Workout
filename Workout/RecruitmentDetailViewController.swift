@@ -18,6 +18,8 @@ class RecruitmentDetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var numberOfPeopleLabel: UILabel!
+    @IBOutlet weak var numberOfPeopleRecruitedLabel: UILabel!
     
     @IBAction func enroll(sender: AnyObject) {
         
@@ -44,6 +46,9 @@ class RecruitmentDetailViewController: UIViewController {
     private func configureUI() {
         if let recruitment = recruitment {
             sponsorNameLabel.text = recruitment.sponsor
+            println("numberOfPeople: \(recruitment.numberOfPeopleNeeded)")
+            numberOfPeopleLabel.text = String(recruitment.numberOfPeopleNeeded)
+            numberOfPeopleRecruitedLabel.text = String(recruitment.numberOfPeopleRecruited)
             let gender = recruitment.stringForGender()
             println(gender)
             genderImageView.image = UIImage(named: gender)
@@ -55,6 +60,10 @@ class RecruitmentDetailViewController: UIViewController {
             let startDate = recruitment.startDate
             let endDate = recruitment.endDate
             dateLabel.text = formatter.stringFromDate(startDate, toDate: endDate)
+            
+            locationLabel.text = recruitment.location
+            descriptionTextView.text = recruitment.description
+            
         }
     }
     
