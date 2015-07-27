@@ -12,29 +12,33 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var dataModel = DataModel()
 
 
+    func fakeData() {
+        dataModel.user.username = "Shannon"
+        dataModel.user.gender = "Male"
+        dataModel.user.userIcon = "Gender Neutral User"
+        dataModel.user.description = "I got the vibe."
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        fakeData()
+        println("finishLaunch username: \(dataModel.user.username)")
+        
+        let tabBarController = window?.rootViewController as? UITabBarController
+        if let tabBarControllers = tabBarController?.viewControllers {
+            var navigationController = tabBarControllers[0] as! UINavigationController
+            let mainPageViewController = navigationController.topViewController as! MainPageViewController
+            mainPageViewController.dataModel = dataModel
+            
+            navigationController = tabBarControllers[1] as! UINavigationController
+            let myProfileViewController = navigationController.topViewController as! MyProfileViewController
+            myProfileViewController.dataModel = dataModel
+        }
+        
         // Override point for customization after application launch.
-        let darkBlueColor = UIColor(red: 22/255, green: 30/255, blue: 62/255, alpha: 1.0)
-        let lightBlueColor = UIColor(red: 40/255, green: 81/255, blue: 113/255, alpha: 1.0)
-        let lightGreenColor = UIColor(red: 130/255, green: 192/255, blue: 175/255, alpha: 1.0)
-        let darkYellowColor = UIColor(red: 216/255, green: 179/255, blue: 104/255, alpha: 1.0)
-        let lightYellowColor = UIColor(red: 218/255, green: 212/255, blue: 185/255, alpha: 1.0)
-        
-        /*
-        window?.tintColor = darkBlueColor
-        UINavigationBar.appearance().barTintColor = lightBlueColor
-        UINavigationBar.appearance().tintColor = darkBlueColor
-        
-        UILabel.appearance().tintColor = darkBlueColor
-        
-        //UIView.appearance().backgroundColor = lightYellowColor
-        
-        UITabBar.appearance().barTintColor = lightBlueColor
-        UITableView.appearance().backgroundColor = darkYellowColor
-        UITableViewCell.appearance().backgroundColor = lightYellowColor
-        */
         return true
 
     }

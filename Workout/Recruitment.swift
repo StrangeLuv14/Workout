@@ -14,7 +14,7 @@ class Recruitment {
         case Female = 1
     }
     
-    var sponsor = ""
+    var sponsor = User()
     var gender = Recruitment.Gender.Male
     
     var sportsCategory = ""

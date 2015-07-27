@@ -24,36 +24,49 @@ class RecruitViewController: UITableViewController {
         case NoDate
     }
     
+    var dataModel: DataModel!
+    
     var recruitment = Recruitment()
     
     var dateToEdit = EdittingDate.NoDate
-    
     var datePickerVisible = false
     
     var delegate: RecruitViewControllerDelegate?
+    
+    // MARK: - IBOutlet
 
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
+    
     @IBOutlet weak var sportsCategoryLabel: UILabel!
+    
     @IBOutlet weak var numberOfPeopleTextField: UITextField!
     
     @IBOutlet weak var locationLabel: UILabel!
+    
     @IBOutlet weak var descriptionTextView: UITextView!
     
-    @IBAction func done(sender: AnyObject) {
-        recruitment.postDate = NSDate()
-        recruitment.numberOfPeopleNeeded = numberOfPeopleTextField.text.toInt()!
-        recruitment.description = descriptionTextView.text
-        
-        delegate?.recruitViewController(self, didFinishRecruit: recruitment)
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-    }
+    // MARK: - IBAction
     
     @IBAction func cancel(sender: AnyObject) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func unwindFromSportCategoryPick(unwindSegue: UIStoryboardSegue) {
+        println("unwindFromSportsCategoryPick")
+        let sourceViewController = unwindSegue.sourceViewController as! SportsCategoryPickViewController
+        recruitment.sportsCategory = sourceViewController.sportsCategory
+    }
+    
+    @IBAction func unwindFromLocationPick(unwindSegue: UIStoryboardSegue) {
+        println("unwindFromLocationPick")
+        let sourceViewController = unwindSegue.sourceViewController as! LocationPickViewController
+        recruitment.location = sourceViewController.pickedLocation
+    }
+    
+    // MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,15 +78,10 @@ class RecruitViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillLayoutSubviews() {
+    override func viewWillAppear(animated: Bool) {
         updateLabels()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - RecruitViewController methods
     
     func updateLabels() {
@@ -99,7 +107,7 @@ class RecruitViewController: UITableViewController {
     }
     
     func updateDatePicker() {
-        println("updateDatePicker")
+        
         let indexPathDatePicker = NSIndexPath(forRow: 4, inSection: 0)
         if let pickerCell = tableView.cellForRowAtIndexPath(indexPathDatePicker) {
             let datePicker = pickerCell.viewWithTag(100) as! UIDatePicker
@@ -118,6 +126,7 @@ class RecruitViewController: UITableViewController {
     }
 
     func hideDatePicker() {
+        
         if datePickerVisible {
             datePickerVisible = false
             
@@ -132,6 +141,7 @@ class RecruitViewController: UITableViewController {
     }
     
     func dateChanged(datePicker: UIDatePicker) {
+        
         switch dateToEdit {
             case .StartDate:
                 recruitment.startDate = datePicker.date
@@ -163,13 +173,6 @@ class RecruitViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    /*
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
-    }
-    */
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
@@ -183,7 +186,7 @@ class RecruitViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("tableView(_:, cellForRowAtIndexPath: \(indexPath.section),\(indexPath.row))")
+        
         if (indexPath.section, indexPath.row) == (0, 4) {
             println("insert datePicker")
             var cell:UITableViewCell! = tableView.dequeueReusableCellWithIdentifier("DatePickerCell") as? UITableViewCell
@@ -284,42 +287,6 @@ class RecruitViewController: UITableViewController {
         }
 
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     // MARK: - Navigation
 
@@ -332,35 +299,18 @@ class RecruitViewController: UITableViewController {
             println("prepareForSegue")
             let controller = segue.destinationViewController as! SportsCategoryPickViewController
             controller.sportsCategory = recruitment.sportsCategory
-            controller.delegate = self
         }
         
         if segue.identifier == "PickLocation" {
             let controller = segue.destinationViewController as! LocationPickViewController
-            controller.delegate = self
         }
-    }
-    
-    
-}
-
-// MARK: - LocationPickViewControllerDelegate
-
-extension RecruitViewController: LocationPickViewControllerDelegate {
-    func LocationPickerView(LocationPickView picker: LocationPickViewController, didPickedLocation location: String) {
-        recruitment.location = location
-        updateLabels()
-    }
-}
-
-// MARK: - SportsCategoryPickViewControllerDelegate
-
-extension RecruitViewController: SportsCategoryPickViewControllerDelegate {
-    func sportsCategoryPickView(sportsCategoryPicker: SportsCategoryPickViewController, didPickedSportsCategory category: String) {
-        println("sportsCategoryPickView:didPickedSportsCategory:")
-        recruitment.sportsCategory = category
-        navigationController?.popViewControllerAnimated(true)
         
+        if segue.identifier == "DoneRecruit" {
+            recruitment.sponsor = dataModel.user
+            recruitment.postDate = NSDate()
+            recruitment.numberOfPeopleNeeded = numberOfPeopleTextField.text.toInt()!
+            recruitment.description = descriptionTextView.text
+        }
     }
 }
 

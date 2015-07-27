@@ -10,15 +10,25 @@ import UIKit
 
 class MainPageViewController: UITableViewController {
     
-    var recruitments = [Recruitment]()
+    var dataModel: DataModel!
+    var user = User()
+    
+    
+    @IBAction func unwindFromRecruitView(unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.sourceViewController as! RecruitViewController
+        let recruitment = sourceViewController.recruitment
+        recruitment.sponsor = dataModel.user
+        dataModel.recruitments.append(recruitment)
+        tableView.reloadData()
+    }
 
     override func viewDidLoad() {
-        //fakeData()
         
         super.viewDidLoad()
 
         let cellNib = UINib(nibName: "RecruitmentCell", bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: "RecruitmentCell")
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -26,31 +36,10 @@ class MainPageViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func fakeData() {
-        for index in 1...20 {
-            let recruitment = Recruitment()
-            recruitment.sponsor = "Bob \(index)"
-            recruitment.gender = (index % 2) == 0 ? Recruitment.Gender.Male : Recruitment.Gender.Female
-            
-            
-            recruitment.sportsCategory = "Bowling"
-            
-            let timeInterval = NSTimeInterval(index * 10000)
-            let postDate = NSDate(timeIntervalSinceNow: timeInterval * -1)
-            recruitment.postDate = postDate
-            
-            let startDate = NSDate(timeInterval: timeInterval * 2, sinceDate: postDate)
-            recruitment.startDate = startDate
-            
-            let endDate = NSDate(timeInterval: timeInterval / 2, sinceDate: startDate)
-            recruitment.endDate = endDate
-            
-            
-            
-            recruitments.append(recruitment)
-        }
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,14 +50,14 @@ class MainPageViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return recruitments.count
+        return dataModel.recruitments.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RecruitmentCell", forIndexPath: indexPath) as! RecruitmentCell
 
         // Configure the cell...
-        let recruitment = recruitments[indexPath.row]
+        let recruitment = dataModel.recruitments[indexPath.row]
         cell.configureForRecruitment(recruitment)
 
         return cell
@@ -82,41 +71,6 @@ class MainPageViewController: UITableViewController {
         performSegueWithIdentifier("ShowDetail", sender: indexPath)
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -125,22 +79,14 @@ class MainPageViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "ShowDetail" {
             let controller = segue.destinationViewController as! RecruitmentDetailViewController
-            controller.recruitment = recruitments[sender!.row]
+            controller.recruitment = dataModel.recruitments[sender!.row]
         }
         
         if segue.identifier == "Recruit" {
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! RecruitViewController
-            controller.delegate = self
+            controller.dataModel = dataModel
         }
     }
     
-}
-
-extension MainPageViewController: RecruitViewControllerDelegate {
-    func recruitViewController(view: RecruitViewController, didFinishRecruit recruitment: Recruitment) {
-        println("didFinishRecruit")
-        recruitments.append(recruitment)
-        tableView.reloadData()
-    }
 }

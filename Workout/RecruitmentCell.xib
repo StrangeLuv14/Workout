@@ -13,7 +13,7 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WsC-qb-Mt5" id="fOZ-TZ-63i">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sponsor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSF-5E-q2h">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sponsor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSF-5E-q2h">
                         <rect key="frame" x="66" y="19" width="65" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -27,7 +27,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="post time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-Lp-Jg7">
-                        <rect key="frame" x="247" y="51" width="65" height="18"/>
+                        <rect key="frame" x="247.5" y="51" width="64.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -43,8 +43,11 @@
                     <constraint firstItem="YQg-Fg-Oyn" firstAttribute="top" secondItem="fOZ-TZ-63i" secondAttribute="topMargin" constant="11" id="RIw-AH-uRG"/>
                     <constraint firstItem="LMM-vb-K0R" firstAttribute="top" secondItem="fOZ-TZ-63i" secondAttribute="topMargin" constant="10" id="WDV-Rl-tnc"/>
                     <constraint firstAttribute="trailing" secondItem="Og2-Lp-Jg7" secondAttribute="trailing" constant="8" id="a3j-nL-Fbv"/>
+                    <constraint firstItem="YQg-Fg-Oyn" firstAttribute="top" secondItem="RSF-5E-q2h" secondAttribute="top" id="cHX-Ka-1x9"/>
                     <constraint firstItem="YQg-Fg-Oyn" firstAttribute="leading" secondItem="fOZ-TZ-63i" secondAttribute="leading" constant="8" id="ckW-4f-L5j"/>
+                    <constraint firstItem="RSF-5E-q2h" firstAttribute="leading" secondItem="YQg-Fg-Oyn" secondAttribute="trailing" constant="8" id="dnM-fU-ibJ"/>
                     <constraint firstItem="LMM-vb-K0R" firstAttribute="trailing" secondItem="fOZ-TZ-63i" secondAttribute="trailingMargin" id="jzU-Hm-uOH"/>
+                    <constraint firstItem="LMM-vb-K0R" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSF-5E-q2h" secondAttribute="trailing" constant="10" id="rC9-AK-rQb"/>
                     <constraint firstAttribute="bottom" secondItem="Og2-Lp-Jg7" secondAttribute="bottom" constant="18.5" id="vAi-RO-OGC"/>
                 </constraints>
                 <variation key="default">

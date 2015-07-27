@@ -14,6 +14,8 @@ protocol LocationPickViewControllerDelegate: class {
     func LocationPickerView(LocationPickView picker: LocationPickViewController, didPickedLocation location: String)
 }
 
+// TODO: Too muddy!
+
 class LocationPickViewController: UIViewController {
     
     var locationManager = CLLocationManager()
@@ -21,6 +23,7 @@ class LocationPickViewController: UIViewController {
     var location: CLLocation?
     var lastLocationError: NSError?
     var placemark: CLPlacemark?
+    
     var pickedLocation = ""
     
     var timer: NSTimer?
@@ -31,27 +34,16 @@ class LocationPickViewController: UIViewController {
     
     var pointAnnotation = MKPointAnnotation()
     
-    var delegate: LocationPickViewControllerDelegate?
-    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var checkedButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
    
     
     @IBAction func pickLocation(sender: AnyObject) {
-        println("Done pick location!")
-        
-        
-        if let delegate = delegate{
-            delegate.LocationPickerView(LocationPickView: self, didPickedLocation: pickedLocation)
-        }
         hideButtons()
-        
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func CancelLocation(sender: AnyObject) {
-        println("Cancel picked location!")
         mapView.deselectAnnotation(pointAnnotation, animated: true)
         hideButtons()
     
@@ -61,14 +53,6 @@ class LocationPickViewController: UIViewController {
         // TODO: retrive previous location if exist
         println("myLocation: lat:\(location!.coordinate.latitude), long:\(location!.coordinate.latitude)")
         pointAnnotation.coordinate = location!.coordinate
-        
-        /*
-        if let placemark = placemark {
-           pointAnnotation.title = stringForPlacemark(placemark)
-        } else {
-            pointAnnotation.title = ""
-        }
-        */
         
         println("placemark: \(stringForPlacemark(placemark!))")
         pointAnnotation.title = stringForPlacemark(placemark!)
@@ -172,18 +156,6 @@ class LocationPickViewController: UIViewController {
         return line1
         //return line1.isEmpty ? (line2 + "\n") : (line1 + "\n" + line2)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
 
 }
 
@@ -306,69 +278,6 @@ extension LocationPickViewController: MKMapViewDelegate {
         showButtons()
         pickedLocation = view.annotation.title!
     }
-    
-    /*
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        
-        print("oldDragState:")
-        switch oldState {
-            
-        case .Starting:
-            println("Starting")
-            
-        case .Ending:
-            println("Ending")
-            
-            
-        case .Canceling:
-            println("Canceling")
-            
-        case .None:
-            println("None")
-            
-        case .Dragging:
-            println("Dragging")
-            
-            
-        default:break
-        }
-        
-        print("newDragState:")
-        switch newState {
-            
-        case .Starting:
-            println("Starting")
-            
-        case .Ending:
-            println("Ending")
-            
-        case .Canceling:
-            println("Canceling")
-            
-        case .None:
-            println("None")
-            
-        default:break
-        }
-        
-        switch (oldState, newState) {
-        case (.None, .Starting):
-            hideButtons()
-            
-        case (_, .Starting):
-            view.setDragState(.Dragging, animated: true)
-            
-        //case (_, .Ending):
-            //view.setDragState(.None, animated: true)
-            
-        case (.Ending, .None):
-            setReigonForCoordinate(pointAnnotation.coordinate)
-            
-        default:break
-        }
-        
-    }
-    */
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         //TODO: customize a annotationView

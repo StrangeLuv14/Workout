@@ -16,13 +16,16 @@
 		071BC2CC1B6002DE0075047F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071BC2CA1B6002DE0075047F /* LaunchScreen.xib */; };
 		071BC2D81B6002DF0075047F /* WorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC2D71B6002DF0075047F /* WorkoutTests.swift */; };
 		071BC2E21B6003B80075047F /* RecruitmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071BC2E11B6003B80075047F /* RecruitmentCell.xib */; };
-		075353AF1B64C3CE00F81DF6 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075353AE1B64C3CE00F81DF6 /* MyTabBarController.swift */; };
+		075353B11B64FC5D00F81DF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075353B01B64FC5D00F81DF6 /* User.swift */; };
+		075353B31B64FCAC00F81DF6 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075353B21B64FCAC00F81DF6 /* MyProfileViewController.swift */; };
 		077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */; };
 		078799541B604C3E005E412B /* RecruitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078799531B604C3E005E412B /* RecruitViewController.swift */; };
 		078799561B61264F005E412B /* SportsCategoryPickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078799551B61264F005E412B /* SportsCategoryPickViewController.swift */; };
 		07AE30711B623AC4006D3B9F /* LocationPickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */; };
 		07AF4BD21B626F680030F1FC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AF4BD11B626F680030F1FC /* MapKit.framework */; };
 		07AF4BDA1B629D050030F1FC /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF4BD91B629D050030F1FC /* String+AddText.swift */; };
+		07E67D5E1B65FC3E008EF396 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D5D1B65FC3E008EF396 /* SettingsViewController.swift */; };
+		07E67D601B6626B4008EF396 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D5F1B6626B4008EF396 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,13 +52,16 @@
 		071BC2D61B6002DF0075047F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		071BC2D71B6002DF0075047F /* WorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTests.swift; sourceTree = "<group>"; };
 		071BC2E11B6003B80075047F /* RecruitmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecruitmentCell.xib; sourceTree = "<group>"; };
-		075353AE1B64C3CE00F81DF6 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
+		075353B01B64FC5D00F81DF6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		075353B21B64FCAC00F81DF6 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitmentDetailViewController.swift; sourceTree = "<group>"; };
 		078799531B604C3E005E412B /* RecruitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitViewController.swift; sourceTree = "<group>"; };
 		078799551B61264F005E412B /* SportsCategoryPickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportsCategoryPickViewController.swift; sourceTree = "<group>"; };
 		07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickViewController.swift; sourceTree = "<group>"; };
 		07AF4BD11B626F680030F1FC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		07AF4BD91B629D050030F1FC /* String+AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
+		07E67D5D1B65FC3E008EF396 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		07E67D5F1B6626B4008EF396 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,17 +106,20 @@
 			isa = PBXGroup;
 			children = (
 				071BC2BF1B6002DE0075047F /* AppDelegate.swift */,
-				07020B421B600A2D005F16D0 /* RecruitmentCell.swift */,
-				071BC2C51B6002DE0075047F /* Main.storyboard */,
-				075353AE1B64C3CE00F81DF6 /* MyTabBarController.swift */,
-				07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */,
-				07AF4BD91B629D050030F1FC /* String+AddText.swift */,
-				078799551B61264F005E412B /* SportsCategoryPickViewController.swift */,
-				078799531B604C3E005E412B /* RecruitViewController.swift */,
-				071BC2E11B6003B80075047F /* RecruitmentCell.xib */,
 				07020B3C1B600524005F16D0 /* MainPageViewController.swift */,
 				077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */,
+				071BC2C51B6002DE0075047F /* Main.storyboard */,
+				078799531B604C3E005E412B /* RecruitViewController.swift */,
+				07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */,
+				078799551B61264F005E412B /* SportsCategoryPickViewController.swift */,
+				07E67D5D1B65FC3E008EF396 /* SettingsViewController.swift */,
 				07020B3E1B6005C9005F16D0 /* Recruitment.swift */,
+				07E67D5F1B6626B4008EF396 /* DataModel.swift */,
+				075353B01B64FC5D00F81DF6 /* User.swift */,
+				07AF4BD91B629D050030F1FC /* String+AddText.swift */,
+				075353B21B64FCAC00F81DF6 /* MyProfileViewController.swift */,
+				071BC2E11B6003B80075047F /* RecruitmentCell.xib */,
+				07020B421B600A2D005F16D0 /* RecruitmentCell.swift */,
 				071BC2C81B6002DE0075047F /* Images.xcassets */,
 				071BC2CA1B6002DE0075047F /* LaunchScreen.xib */,
 				071BC2BD1B6002DE0075047F /* Supporting Files */,
@@ -250,10 +259,13 @@
 				078799541B604C3E005E412B /* RecruitViewController.swift in Sources */,
 				078799561B61264F005E412B /* SportsCategoryPickViewController.swift in Sources */,
 				071BC2C01B6002DE0075047F /* AppDelegate.swift in Sources */,
+				075353B31B64FCAC00F81DF6 /* MyProfileViewController.swift in Sources */,
+				07E67D601B6626B4008EF396 /* DataModel.swift in Sources */,
 				07020B431B600A2D005F16D0 /* RecruitmentCell.swift in Sources */,
 				077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */,
 				07AE30711B623AC4006D3B9F /* LocationPickViewController.swift in Sources */,
-				075353AF1B64C3CE00F81DF6 /* MyTabBarController.swift in Sources */,
+				07E67D5E1B65FC3E008EF396 /* SettingsViewController.swift in Sources */,
+				075353B11B64FC5D00F81DF6 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

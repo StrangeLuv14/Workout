@@ -45,7 +45,7 @@ class RecruitmentDetailViewController: UIViewController {
     
     private func configureUI() {
         if let recruitment = recruitment {
-            sponsorNameLabel.text = recruitment.sponsor
+            sponsorNameLabel.text = recruitment.sponsor.username
             println("numberOfPeople: \(recruitment.numberOfPeopleNeeded)")
             numberOfPeopleLabel.text = String(recruitment.numberOfPeopleNeeded)
             numberOfPeopleRecruitedLabel.text = String(recruitment.numberOfPeopleRecruited)
