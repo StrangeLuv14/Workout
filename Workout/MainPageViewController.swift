@@ -90,5 +90,6 @@ class MainPageViewController: UITableViewController {
 extension MainPageViewController: RecruitViewControllerDelegate {
     func recruitViewController(view: RecruitViewController, didFinishRecruit recruitment: Recruitment) {
         dataModel.recruitments.append(recruitment)
+        dataModel.user.sponsoredRecruitments.append(recruitment)
     }
 }
