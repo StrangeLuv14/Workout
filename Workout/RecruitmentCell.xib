@@ -61,6 +61,7 @@
                 <outlet property="postDateLabel" destination="Og2-Lp-Jg7" id="WXI-6g-dA8"/>
                 <outlet property="sponsorLabel" destination="RSF-5E-q2h" id="Ntt-pH-7dk"/>
                 <outlet property="sportImageView" destination="YQg-Fg-Oyn" id="0B5-l0-bJn"/>
+                <outlet property="userIconImageView" destination="YQg-Fg-Oyn" id="JLt-UW-eDj"/>
             </connections>
             <point key="canvasLocation" x="313" y="372"/>
         </tableViewCell>

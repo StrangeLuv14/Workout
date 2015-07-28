@@ -15,18 +15,81 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var dataModel = DataModel()
 
 
-    func fakeData() {
+    func fakeUser() {
         dataModel.user.username = "Shannon"
         dataModel.user.gender = "Male"
-        dataModel.user.userIcon = "Gender Neutral User"
         dataModel.user.description = "I got the vibe."
+    }
+    
+    func fakeData() {
+        let recruitment1 = Recruitment()
+        let user1 = User()
+        
+        user1.username = "Marvin Gaye"
+        user1.gender = "Male"
+        user1.description = "Let's stay together!"
+        recruitment1.sponsor = user1
+        recruitment1.sportsCategory = "Dumbbell"
+        recruitment1.numberOfPeopleNeeded = 3
+        recruitment1.postDate = NSDate(timeIntervalSinceNow: 1000)
+        recruitment1.startDate = NSDate(timeInterval: 1000, sinceDate:recruitment1.postDate)
+        recruitment1.endDate = NSDate(timeInterval: 1000, sinceDate: recruitment1.startDate)
+        recruitment1.location = "Jungle Fever Bar"
+        recruitment1.description = "Just love workout."
+        dataModel.recruitments.append(recruitment1)
+        
+        let recruitment2 = Recruitment()
+        let user2 = User()
+        
+        user2.username = "The Supremes"
+        user2.gender = "Female"
+        user2.description = "Diana Ross just start soloing!"
+        recruitment2.sponsor = user2
+        recruitment2.sportsCategory = "Yoga"
+        recruitment2.numberOfPeopleNeeded = 2
+        recruitment2.postDate = NSDate(timeIntervalSinceNow: 2000)
+        recruitment2.startDate = NSDate(timeInterval: 2000, sinceDate:recruitment2.postDate)
+        recruitment2.endDate = NSDate(timeInterval: 2000, sinceDate: recruitment2.startDate)
+        recruitment2.location = "Soul Train"
+        recruitment2.description = "Need to calm down."
+        dataModel.recruitments.append(recruitment2)
+        
+        
+        let recruitment3 = Recruitment()
+        let user3 = User()
+        user3.username = "2 Pac"
+        user3.gender = "Male"
+        user3.description = "Life goes on!"
+        recruitment3.sponsor = user3
+        recruitment3.sportsCategory = "Basketball"
+        recruitment3.numberOfPeopleNeeded = 1
+        recruitment3.postDate = NSDate(timeIntervalSinceNow: 3000)
+        recruitment3.startDate = NSDate(timeInterval: 3000, sinceDate:recruitment3.postDate)
+        recruitment3.endDate = NSDate(timeInterval: 3000, sinceDate: recruitment3.startDate)
+        recruitment3.location = "The park"
+        recruitment3.description = "And One."
+        dataModel.recruitments.append(recruitment3)
+        
+        let recruitment4 = Recruitment()
+        let user4 = User()
+        user4.username = "Biggie"
+        user4.gender = "Male"
+        user4.description = "Juicy!"
+        recruitment4.sponsor = user4
+        recruitment4.sportsCategory = "Fishing"
+        recruitment4.numberOfPeopleNeeded = 2
+        recruitment4.postDate = NSDate(timeIntervalSinceNow: 4000)
+        recruitment4.startDate = NSDate(timeInterval: 4000, sinceDate:recruitment4.postDate)
+        recruitment4.endDate = NSDate(timeInterval: 4000, sinceDate: recruitment4.startDate)
+        recruitment4.location = "Brooklyn River"
+        recruitment4.description = "Just like to eat fish."
+        dataModel.recruitments.append(recruitment4)
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        fakeUser()
         fakeData()
-        println("finishLaunch username: \(dataModel.user.username)")
-        
         let tabBarController = window?.rootViewController as? UITabBarController
         if let tabBarControllers = tabBarController?.viewControllers {
             var navigationController = tabBarControllers[0] as! UINavigationController

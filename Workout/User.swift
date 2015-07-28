@@ -7,11 +7,27 @@
 //
 
 import Foundation
+import UIKit
 
+func == (lhs: User, rhs: User) -> Bool {
+    return lhs.id == rhs.id
+}
 
 class User {
+    static var userId = 0
+    
     var username = ""
-    var userIcon = ""
+    var userIcon = UIImage(named: "Default User")
     var description = ""
     var gender = ""
+    var id = User.getId()
+    
+    
+    var sponsoredRecruitments = [Recruitment]()
+    var enrolledRecruitments = [Recruitment]()
+    var collectedRecruitments = [Recruitment]()
+    
+    class func getId() -> Int {
+        return ++userId
+    }
 }

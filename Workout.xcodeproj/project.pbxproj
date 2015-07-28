@@ -26,6 +26,7 @@
 		07AF4BDA1B629D050030F1FC /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF4BD91B629D050030F1FC /* String+AddText.swift */; };
 		07E67D5E1B65FC3E008EF396 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D5D1B65FC3E008EF396 /* SettingsViewController.swift */; };
 		07E67D601B6626B4008EF396 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D5F1B6626B4008EF396 /* DataModel.swift */; };
+		07E67D621B6722FD008EF396 /* MyRecruitmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D611B6722FD008EF396 /* MyRecruitmentsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		07AF4BD91B629D050030F1FC /* String+AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 		07E67D5D1B65FC3E008EF396 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		07E67D5F1B6626B4008EF396 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		07E67D611B6722FD008EF396 /* MyRecruitmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRecruitmentsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				07020B3C1B600524005F16D0 /* MainPageViewController.swift */,
 				077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */,
 				071BC2C51B6002DE0075047F /* Main.storyboard */,
+				07E67D611B6722FD008EF396 /* MyRecruitmentsViewController.swift */,
 				078799531B604C3E005E412B /* RecruitViewController.swift */,
 				07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */,
 				078799551B61264F005E412B /* SportsCategoryPickViewController.swift */,
@@ -255,6 +258,7 @@
 			files = (
 				07020B3D1B600524005F16D0 /* MainPageViewController.swift in Sources */,
 				07AF4BDA1B629D050030F1FC /* String+AddText.swift in Sources */,
+				07E67D621B6722FD008EF396 /* MyRecruitmentsViewController.swift in Sources */,
 				07020B3F1B6005C9005F16D0 /* Recruitment.swift in Sources */,
 				078799541B604C3E005E412B /* RecruitViewController.swift in Sources */,
 				078799561B61264F005E412B /* SportsCategoryPickViewController.swift in Sources */,

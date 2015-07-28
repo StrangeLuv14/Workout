@@ -13,15 +13,6 @@ class MainPageViewController: UITableViewController {
     var dataModel: DataModel!
     var user = User()
     
-    
-    @IBAction func unwindFromRecruitView(unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.sourceViewController as! RecruitViewController
-        let recruitment = sourceViewController.recruitment
-        recruitment.sponsor = dataModel.user
-        dataModel.recruitments.append(recruitment)
-        tableView.reloadData()
-    }
-
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -37,6 +28,9 @@ class MainPageViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        //FIXME: tableview cell not updated
+        println("ViewWillAppear")
+        println("")
         tableView.reloadData()
     }
     
@@ -57,6 +51,7 @@ class MainPageViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("RecruitmentCell", forIndexPath: indexPath) as! RecruitmentCell
 
         // Configure the cell...
+        println("cellForRowAtIndexPath")
         let recruitment = dataModel.recruitments[indexPath.row]
         cell.configureForRecruitment(recruitment)
 
@@ -70,7 +65,7 @@ class MainPageViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("ShowDetail", sender: indexPath)
     }
-
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -80,13 +75,20 @@ class MainPageViewController: UITableViewController {
         if segue.identifier == "ShowDetail" {
             let controller = segue.destinationViewController as! RecruitmentDetailViewController
             controller.recruitment = dataModel.recruitments[sender!.row]
+            controller.dataModel = dataModel
         }
         
         if segue.identifier == "Recruit" {
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! RecruitViewController
             controller.dataModel = dataModel
+            controller.delegate = self
         }
     }
-    
+}
+
+extension MainPageViewController: RecruitViewControllerDelegate {
+    func recruitViewController(view: RecruitViewController, didFinishRecruit recruitment: Recruitment) {
+        dataModel.recruitments.append(recruitment)
+    }
 }

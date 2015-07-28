@@ -16,7 +16,10 @@ protocol RecruitViewControllerDelegate: class {
     func recruitViewController(view: RecruitViewController, didFinishRecruit recruitment: Recruitment)
 }
 
+
 class RecruitViewController: UITableViewController {
+    
+//TODO: Scroll table view when keyboard shows up.
     
     enum EdittingDate {
         case StartDate
@@ -50,6 +53,15 @@ class RecruitViewController: UITableViewController {
     
     // MARK: - IBAction
     
+    @IBAction func done(sender: AnyObject) {
+        recruitment.numberOfPeopleNeeded = numberOfPeopleTextField.text.toInt()!
+        recruitment.description = descriptionTextView.text
+        if let delegate = self.delegate {
+            delegate.recruitViewController(self, didFinishRecruit: recruitment)
+        }
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func cancel(sender: AnyObject) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -69,6 +81,8 @@ class RecruitViewController: UITableViewController {
     // MARK: -
     
     override func viewDidLoad() {
+        recruitment.postDate = NSDate()
+        recruitment.sponsor = dataModel.user
         super.viewDidLoad()
         
         // Uncomment the following line to preserve selection between presentations
@@ -304,13 +318,6 @@ class RecruitViewController: UITableViewController {
         if segue.identifier == "PickLocation" {
             let controller = segue.destinationViewController as! LocationPickViewController
         }
-        
-        if segue.identifier == "DoneRecruit" {
-            recruitment.sponsor = dataModel.user
-            recruitment.postDate = NSDate()
-            recruitment.numberOfPeopleNeeded = numberOfPeopleTextField.text.toInt()!
-            recruitment.description = descriptionTextView.text
-        }
     }
 }
 
@@ -320,5 +327,4 @@ extension RecruitViewController: UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
         hideDatePicker()
     }
-    
 }

@@ -11,7 +11,9 @@ import UIKit
 class RecruitmentDetailViewController: UIViewController {
     
     var recruitment: Recruitment?
+    var dataModel: DataModel!
 
+    @IBOutlet weak var userIconImageView: UIImageView!
     @IBOutlet weak var sponsorNameLabel: UILabel!
     @IBOutlet weak var genderImageView: UIImageView!
     @IBOutlet weak var sportsImageView: UIImageView!
@@ -20,16 +22,55 @@ class RecruitmentDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var numberOfPeopleLabel: UILabel!
     @IBOutlet weak var numberOfPeopleRecruitedLabel: UILabel!
+    @IBOutlet weak var enrollButton: UIButton!
+    @IBOutlet weak var collectButton: UIButton!
     
     @IBAction func enroll(sender: AnyObject) {
-        
+        if let recruitment = recruitment {
+            if !recruitment.enrolled {
+                recruitment.enrolled = true
+                enrollButton.setTitle("Enrolled", forState: .Normal)
+                let numberOfPeopleAvailable = recruitment.numberOfPeopleNeeded - recruitment.numberOfPeopleRecruited
+                if numberOfPeopleAvailable != 0 {
+                    recruitment.numberOfPeopleRecruited++
+                    dataModel.user.enrolledRecruitments.append(recruitment)
+                    println("Enrolled!")
+                } else {
+                    println("Enroll failed!")
+                }
+            } else {
+                recruitment.enrolled = false
+                enrollButton.setTitle("Enroll", forState: .Normal)
+                if let index = find(dataModel.user.enrolledRecruitments, recruitment) {
+                    recruitment.numberOfPeopleRecruited--
+                    dataModel.user.enrolledRecruitments.removeAtIndex(index)
+                    println("Cancel enroll!")
+                } else {
+                    println("Cancel Enroll failed!")
+                }
+            }
+        }
+        configureUI()
     }
     
     @IBAction func collect(sender: AnyObject) {
+        if let recruitment = recruitment {
+            if !recruitment.collected {
+                recruitment.collected = true
+                collectButton.setTitle("Collected", forState: .Normal)
+                dataModel.user.collectedRecruitments.append(recruitment)
+                
+                
+            } else {
+                recruitment.collected = false
+                collectButton.setTitle("Collect", forState: .Normal)
+                if let index = find(dataModel.user.collectedRecruitments, recruitment) {
+                    dataModel.user.collectedRecruitments.removeAtIndex(index)
+                }
+            }
+        }
     }
     
-    @IBAction func cancel(sender: AnyObject) {
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +86,18 @@ class RecruitmentDetailViewController: UIViewController {
     
     private func configureUI() {
         if let recruitment = recruitment {
+            
+            if recruitment.sponsor == dataModel!.user {
+                hideButtons()
+            } else {
+                showButtons()
+            }
+            
+            userIconImageView.image = recruitment.sponsor.userIcon
             sponsorNameLabel.text = recruitment.sponsor.username
-            println("numberOfPeople: \(recruitment.numberOfPeopleNeeded)")
             numberOfPeopleLabel.text = String(recruitment.numberOfPeopleNeeded)
             numberOfPeopleRecruitedLabel.text = String(recruitment.numberOfPeopleRecruited)
             let gender = recruitment.stringForGender()
-            println(gender)
             genderImageView.image = UIImage(named: gender)
             sportsImageView.image = UIImage(named: recruitment.sportsCategory)
             
@@ -65,6 +112,21 @@ class RecruitmentDetailViewController: UIViewController {
             descriptionTextView.text = recruitment.description
             
         }
+    }
+    
+    private func hideButtons() {
+        enrollButton.hidden = true
+        collectButton.hidden = true
+    }
+    
+    private func showButtons() {
+        if let recruitment = recruitment {
+            enrollButton.hidden = false
+            collectButton.hidden = false
+            enrollButton.setTitle(recruitment.enrolled ? "Enrolled" : "Enroll", forState: .Normal)
+            collectButton.setTitle(recruitment.collected ? "Collected" : "Collect", forState: .Normal)
+        }
+        
     }
     
 

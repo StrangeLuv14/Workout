@@ -7,6 +7,13 @@
 //
 
 import Foundation
+import Swift
+
+func == (lhs: Recruitment, rhs: Recruitment) -> Bool {
+    return lhs.id == rhs.id
+}
+
+extension Recruitment: Equatable {}
 
 class Recruitment {
     enum Gender : Int{
@@ -14,9 +21,12 @@ class Recruitment {
         case Female = 1
     }
     
+    static var recruitmentId = 0
+    
     var sponsor = User()
     var gender = Recruitment.Gender.Male
     
+    var id = Recruitment.getId()
     var sportsCategory = ""
     var numberOfPeopleNeeded = 0
     var numberOfPeopleRecruited = 0
@@ -27,6 +37,11 @@ class Recruitment {
     var endDate = NSDate()
     var location = ""
     var description = ""
+    var enrolled = false
+    var collected = false
+    
+    //func ==(lhs: Self, rhs: Self) -> Bool
+
     
     func stringForGender() -> String {
         switch gender {
@@ -35,6 +50,10 @@ class Recruitment {
         }
     }
     
+    
+    class func getId() -> Int {
+        return ++recruitmentId
+    }
     /*
     enum sportsCategory: String {
         case Baseball = "Baseball"

@@ -27,11 +27,7 @@ class MyProfileViewController: UITableViewController {
     
     
     override func viewDidLoad() {
-       
         super.viewDidLoad()
-        
-        println("username: \(dataModel.user.username)")
-        
         userIconImageView.userInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "showPhotoMenu")
         userIconImageView.addGestureRecognizer(tapGestureRecognizer)
@@ -53,8 +49,7 @@ class MyProfileViewController: UITableViewController {
     
 
     func updateUI() {
-        println("updateUI")
-        userIconImageView.image = UIImage(named: dataModel.user.userIcon)
+        userIconImageView.image = dataModel.user.userIcon
         genderImageView.image = UIImage(named: dataModel.user.gender)
         usernameLabel.text = dataModel.user.username
         userDescriptionLabel.text = dataModel.user.description
@@ -64,6 +59,11 @@ class MyProfileViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        switch (indexPath.section, indexPath.row) {
+        case (1, _):
+            performSegueWithIdentifier("ShowMyRecruitments", sender: indexPath)
+        default:break
+        }
     }
     
     // MARK: - Table view data source
@@ -74,6 +74,29 @@ class MyProfileViewController: UITableViewController {
         if segue.identifier == "ShowSettings" {
             let controller = segue.destinationViewController as! SettingsViewController
             controller.dataModel = dataModel
+        }
+        
+        if segue.identifier == "ShowMyRecruitments" {
+            println("ShowMyRecruitments")
+            let controller = segue.destinationViewController as! MyRecruitmentsViewController
+            controller.dataModel = dataModel
+            if let indexPath = sender as? NSIndexPath {
+                switch (indexPath.section, indexPath.row) {
+                case (1, 0):
+                    controller.recruitmentsKind = .MyRecruitments
+                    println("\(controller.title)")
+                case (1, 1):
+                    controller.recruitmentsKind = .Enrollments  
+                    println("\(controller.title)")
+                case (1, 2):
+                    controller.recruitmentsKind = .Collection
+                    println("\(controller.title)")
+                default:
+                    println("fatal Error！")
+                    break
+                }
+            }
+            
         }
     }
     
@@ -113,7 +136,9 @@ extension MyProfileViewController: UIImagePickerControllerDelegate, UINavigation
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        userIconImageView.image = info[UIImagePickerControllerEditedImage] as! UIImage?
+        let newUserIcon = info[UIImagePickerControllerEditedImage] as! UIImage?
+        userIconImageView.image = newUserIcon
+        dataModel.user.userIcon = newUserIcon
         tableView.reloadData()
         presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
