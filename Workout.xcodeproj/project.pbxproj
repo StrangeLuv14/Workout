@@ -26,7 +26,10 @@
 		07AF4BDA1B629D050030F1FC /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF4BD91B629D050030F1FC /* String+AddText.swift */; };
 		07E67D5E1B65FC3E008EF396 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D5D1B65FC3E008EF396 /* SettingsViewController.swift */; };
 		07E67D601B6626B4008EF396 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D5F1B6626B4008EF396 /* DataModel.swift */; };
-		07E67D621B6722FD008EF396 /* MyRecruitmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D611B6722FD008EF396 /* MyRecruitmentsViewController.swift */; };
+		07E67D681B67DF4F008EF396 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E67D671B67DF4F008EF396 /* ProfileCell.xib */; };
+		07E67D6A1B67DF96008EF396 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D691B67DF96008EF396 /* ProfileCell.swift */; };
+		07E67D6C1B67E49B008EF396 /* RecruitmentsKindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E67D6B1B67E49B008EF396 /* RecruitmentsKindCell.xib */; };
+		07E67D6E1B67E7EE008EF396 /* RecruitmentsKindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E67D6D1B67E7EE008EF396 /* RecruitmentsKindCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +66,10 @@
 		07AF4BD91B629D050030F1FC /* String+AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 		07E67D5D1B65FC3E008EF396 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		07E67D5F1B6626B4008EF396 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		07E67D611B6722FD008EF396 /* MyRecruitmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRecruitmentsViewController.swift; sourceTree = "<group>"; };
+		07E67D671B67DF4F008EF396 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		07E67D691B67DF96008EF396 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		07E67D6B1B67E49B008EF396 /* RecruitmentsKindCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecruitmentsKindCell.xib; sourceTree = "<group>"; };
+		07E67D6D1B67E7EE008EF396 /* RecruitmentsKindCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitmentsKindCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +117,11 @@
 				07020B3C1B600524005F16D0 /* MainPageViewController.swift */,
 				077E156A1B602D9C008B313D /* RecruitmentDetailViewController.swift */,
 				071BC2C51B6002DE0075047F /* Main.storyboard */,
-				07E67D611B6722FD008EF396 /* MyRecruitmentsViewController.swift */,
+				075353B21B64FCAC00F81DF6 /* MyProfileViewController.swift */,
+				07E67D6B1B67E49B008EF396 /* RecruitmentsKindCell.xib */,
+				07E67D6D1B67E7EE008EF396 /* RecruitmentsKindCell.swift */,
+				07E67D671B67DF4F008EF396 /* ProfileCell.xib */,
+				07E67D691B67DF96008EF396 /* ProfileCell.swift */,
 				078799531B604C3E005E412B /* RecruitViewController.swift */,
 				07AE30701B623AC4006D3B9F /* LocationPickViewController.swift */,
 				078799551B61264F005E412B /* SportsCategoryPickViewController.swift */,
@@ -120,7 +130,6 @@
 				07E67D5F1B6626B4008EF396 /* DataModel.swift */,
 				075353B01B64FC5D00F81DF6 /* User.swift */,
 				07AF4BD91B629D050030F1FC /* String+AddText.swift */,
-				075353B21B64FCAC00F81DF6 /* MyProfileViewController.swift */,
 				071BC2E11B6003B80075047F /* RecruitmentCell.xib */,
 				07020B421B600A2D005F16D0 /* RecruitmentCell.swift */,
 				071BC2C81B6002DE0075047F /* Images.xcassets */,
@@ -237,8 +246,10 @@
 			files = (
 				071BC2C71B6002DE0075047F /* Main.storyboard in Resources */,
 				071BC2CC1B6002DE0075047F /* LaunchScreen.xib in Resources */,
+				07E67D6C1B67E49B008EF396 /* RecruitmentsKindCell.xib in Resources */,
 				071BC2E21B6003B80075047F /* RecruitmentCell.xib in Resources */,
 				071BC2C91B6002DE0075047F /* Images.xcassets in Resources */,
+				07E67D681B67DF4F008EF396 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,13 +269,14 @@
 			files = (
 				07020B3D1B600524005F16D0 /* MainPageViewController.swift in Sources */,
 				07AF4BDA1B629D050030F1FC /* String+AddText.swift in Sources */,
-				07E67D621B6722FD008EF396 /* MyRecruitmentsViewController.swift in Sources */,
 				07020B3F1B6005C9005F16D0 /* Recruitment.swift in Sources */,
 				078799541B604C3E005E412B /* RecruitViewController.swift in Sources */,
 				078799561B61264F005E412B /* SportsCategoryPickViewController.swift in Sources */,
 				071BC2C01B6002DE0075047F /* AppDelegate.swift in Sources */,
 				075353B31B64FCAC00F81DF6 /* MyProfileViewController.swift in Sources */,
 				07E67D601B6626B4008EF396 /* DataModel.swift in Sources */,
+				07E67D6E1B67E7EE008EF396 /* RecruitmentsKindCell.swift in Sources */,
+				07E67D6A1B67DF96008EF396 /* ProfileCell.swift in Sources */,
 				07020B431B600A2D005F16D0 /* RecruitmentCell.swift in Sources */,
 				077E156B1B602D9C008B313D /* RecruitmentDetailViewController.swift in Sources */,
 				07AE30711B623AC4006D3B9F /* LocationPickViewController.swift in Sources */,

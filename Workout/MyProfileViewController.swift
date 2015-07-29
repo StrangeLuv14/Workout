@@ -10,35 +10,42 @@ import UIKit
 
 class MyProfileViewController: UITableViewController {
     
-    @IBOutlet weak var userIconImageView: UIImageView!
-    @IBOutlet weak var genderImageView: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var userDescriptionLabel: UILabel!
+    
     
     var dataModel: DataModel!
+    var recruitmentsKind = RecruitmentsKind.Sponsorship
     
     
     
     @IBAction func done(sender: UIStoryboardSegue) {
         let sourceViewController = sender.sourceViewController as! SettingsViewController
-        updateUI()
         println("Unwind to MyProfile")
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userIconImageView.userInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "showPhotoMenu")
-        userIconImageView.addGestureRecognizer(tapGestureRecognizer)
         
-        updateUI()
+        var nib = UINib(nibName: "ProfileCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "ProfileCell")
+        
+        
+        nib = UINib(nibName: "RecruitmentsKindCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "RecruitmentsKindCell")
+        
+        nib = UINib(nibName: "RecruitmentCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "RecruitmentCell")
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,26 +54,67 @@ class MyProfileViewController: UITableViewController {
     }
     
     
-
-    func updateUI() {
-        userIconImageView.image = dataModel.user.userIcon
-        genderImageView.image = UIImage(named: dataModel.user.gender)
-        usernameLabel.text = dataModel.user.username
-        userDescriptionLabel.text = dataModel.user.description
-        
-        tableView.reloadData()
+    
+    // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var recruitmentsCount = 0
+        switch recruitmentsKind {
+        case .Sponsorship:
+            recruitmentsCount = dataModel.user.sponsoredRecruitments.count
+        case .Enrollment:
+            recruitmentsCount = dataModel.user.enrolledRecruitments.count
+        case .Collection:
+            recruitmentsCount = dataModel.user.collectedRecruitments.count
+        }
+        return 2 + recruitmentsCount
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        switch (indexPath.section, indexPath.row) {
-        case (1, _):
-            performSegueWithIdentifier("ShowMyRecruitments", sender: indexPath)
-        default:break
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 1 {
+            return 44
+        } else {
+            return 88
         }
     }
     
-    // MARK: - Table view data source
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        println("cellForRowAtIndexPath")
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell", forIndexPath: indexPath) as! ProfileCell
+            cell.configureCellForUser(dataModel.user)
+            cell.delegate = self
+            return cell
+            
+        } else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecruitmentsKindCell", forIndexPath: indexPath) as! RecruitmentsKindCell
+            cell.delegate = self
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecruitmentCell", forIndexPath: indexPath) as! RecruitmentCell
+
+            switch recruitmentsKind {
+            case .Sponsorship:
+                let recruitment = dataModel.user.sponsoredRecruitments[indexPath.row - 2]
+                cell.configureForRecruitment(recruitment)
+                return cell
+            case .Enrollment:
+                let recruitment = dataModel.user.enrolledRecruitments[indexPath.row - 2]
+                cell.configureForRecruitment(recruitment)
+                return cell
+            case .Collection:
+                let recruitment = dataModel.user.collectedRecruitments[indexPath.row - 2]
+                cell.configureForRecruitment(recruitment)
+                return cell
+            }
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row > 1 {
+            performSegueWithIdentifier("ShowRecruitment", sender: indexPath)
+        }
+    }
     
     // MARK: - Navigation
     
@@ -76,33 +124,29 @@ class MyProfileViewController: UITableViewController {
             controller.dataModel = dataModel
         }
         
-        if segue.identifier == "ShowMyRecruitments" {
-            println("ShowMyRecruitments")
-            let controller = segue.destinationViewController as! MyRecruitmentsViewController
+        if segue.identifier == "ShowRecruitment" {
+            let controller = segue.destinationViewController as! RecruitmentDetailViewController
+            controller.recruitment = dataModel.recruitments[sender!.row]
             controller.dataModel = dataModel
-            if let indexPath = sender as? NSIndexPath {
-                switch (indexPath.section, indexPath.row) {
-                case (1, 0):
-                    controller.recruitmentsKind = .MyRecruitments
-                    println("\(controller.title)")
-                case (1, 1):
-                    controller.recruitmentsKind = .Enrollments  
-                    println("\(controller.title)")
-                case (1, 2):
-                    controller.recruitmentsKind = .Collection
-                    println("\(controller.title)")
-                default:
-                    println("fatal Error！")
-                    break
-                }
-            }
             
         }
+        
     }
     
 }
 
-extension MyProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MyProfileViewController: RecruitmentsKindCellDelegate {
+    func recruitmentsKindCell(cell: RecruitmentsKindCell, didSelectRecruitmentsKind kind: RecruitmentsKind) {
+        recruitmentsKind = kind
+        tableView.reloadData()
+    }
+}
+
+extension MyProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProfileCellDelegate {
+    
+    func profileCellDidSelectUserIcon(cell: ProfileCell) {
+        showPhotoMenu()
+    }
     
     func takePhotoWithCamera() {
         let imagePicker = UIImagePickerController()
@@ -137,7 +181,6 @@ extension MyProfileViewController: UIImagePickerControllerDelegate, UINavigation
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         let newUserIcon = info[UIImagePickerControllerEditedImage] as! UIImage?
-        userIconImageView.image = newUserIcon
         dataModel.user.userIcon = newUserIcon
         tableView.reloadData()
         presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
